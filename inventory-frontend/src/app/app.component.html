@@ -1,0 +1,25 @@
+
+<app-home></app-home>
+
+
+<form [formGroup]="form">
+  <div>
+    <span>Name:</span>
+    <input formControlName="name"/>
+  </div>
+  <span></span>
+  <div>
+    <span>Last name:</span>
+    <input formControlName="lastName"/>
+  </div>
+  <span></span>
+  <div>
+    <span>Age:</span>
+    <input formControlName="age"/>
+    <mat-slide-toggle formControlName="available">Available</mat-slide-toggle>
+  </div>
+
+  <button type="submit" (click)="submitForm()">Submit</button>
+</form>
+
+<div>{{title}}</div>
