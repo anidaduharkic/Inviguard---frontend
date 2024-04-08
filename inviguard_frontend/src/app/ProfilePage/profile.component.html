@@ -1,0 +1,25 @@
+
+
+<div class="page">
+<app-sidebar></app-sidebar>
+
+<div class="profile-container">
+  <div class="profile-picture">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+  <!--    <img [src]="userProfile.picture" alt="User Picture"> -->
+  </div>
+  <div class="profile-info">
+    <h2>{{ userProfile.name }} {{ userProfile.surname }}</h2>
+    <p>{{ userProfile.about }}</p>
+    <!-- <button  type="button" (click)="logout()">Log out</button> -->
+    <div>
+      <button mat-raised-button type="button" (click)="getSuggestion()">Get suggestion</button>
+    </div>
+    <div>
+    <a routerLink="/login" mat-raised-button>Log out</a>
+    </div>
+  </div>
+</div>
+
+
+</div>

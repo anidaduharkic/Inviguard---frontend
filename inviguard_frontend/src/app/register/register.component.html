@@ -1,0 +1,26 @@
+
+<form [formGroup]="form">
+  <div>
+    <span>Name:</span>
+    <input formControlName="name"/>
+  </div>
+  <span></span>
+  <div>
+    <span>Last name:</span>
+    <input formControlName="lastName"/>
+  </div>
+  <span></span>
+  <div>
+    <span>Email:</span>
+    <input formControlName="email"/>
+  </div>
+  <div>
+    <span>Password:</span>
+    <input formControlName="password"/>
+  </div> </form>
+
+<!--  <mat-slide-toggle formControlName="available">Available</mat-slide-toggle> -->
+  <button type="submit" (click)="submitForm()">Submit</button>
+
+
+<router-outlet></router-outlet>
