@@ -1,6 +1,8 @@
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
+import {SuggestionFactDto} from "../models/suggestion-dto.interface";
+import {SuggestionFact} from "../models/suggestion.interface";
 
 
 @Injectable()
@@ -12,7 +14,7 @@ export class ApiService {
 
   }
   public getSuggestion(): Observable<Object> {
-  return this.http.get(this.url);
+  return this.http.get<Object>(this.url);
 }
 }
 
