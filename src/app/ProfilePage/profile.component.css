@@ -3,6 +3,13 @@ button{
   margin-bottom: 20px;
 }
 
+pink {
+  background-color: pink;
+}
+
+div{
+  color: black;
+}
 .page{
   display: grid;
   grid-template-columns: auto 1fr;

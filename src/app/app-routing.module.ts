@@ -5,6 +5,7 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {LogInComponent} from "./LogIn/LogIn.component";
 import {ProfileComponent} from "./ProfilePage/profile.component";
 import {DashboardComponent} from "./Dashboard/dashboard.component";
+import {InventoryComponent} from "./Inventory/inventory.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LogInComponent
+  },
+
+  {
+    path: 'inventory',
+    component: InventoryComponent
   }
 ];
 

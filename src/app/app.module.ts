@@ -16,6 +16,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormField} from "@angular/material/form-field";
 import {ApiService} from "./services/api.service";
+import {ItemsApiService} from "./services/items-api.service";
+import {MatListModule} from "@angular/material/list";
+import {InventoryComponent} from "./Inventory/inventory.component";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import {ApiService} from "./services/api.service";
     HeaderComponent,
     SidebarComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +42,13 @@ import {ApiService} from "./services/api.service";
     MatTableModule,
     MatIconModule,
     MatFormField,
+    MatListModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync('noop'),
-    ApiService
+    ApiService,
+    ItemsApiService
   ],
   bootstrap: [AppComponent]
 })
