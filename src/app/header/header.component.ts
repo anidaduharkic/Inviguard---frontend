@@ -10,4 +10,5 @@ import {Routes} from "../constants/routes";
 
 
 export class HeaderComponent {
+  protected readonly Routes = Routes;
 }

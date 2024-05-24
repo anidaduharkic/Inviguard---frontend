@@ -5,5 +5,6 @@ export enum Routes {
   items =  'items',
   profile = 'profile',
   sidebar = 'sidebar',
+  inventory = 'inventory',
 
 }
