@@ -2,12 +2,15 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {ItemDto} from "../models/item-dto.interface";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class ItemsApiService {
 
-  private url: string = 'http://localhost:8080/items';
+  private readonly url: string = `${environment.backendUrl}/items`;
+
+  // private url: string = 'http://localhost:8080/items';
 
   constructor(private http: HttpClient) {
 
