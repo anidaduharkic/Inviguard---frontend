@@ -10,7 +10,7 @@ export class ItemsApiService {
 
   private readonly url: string = `${environment.backendUrl}/items`;
 
-  // private url: string = 'http://localhost:8080/items';
+  //private url: string = 'http://localhost:8080/items';
 
   constructor(private http: HttpClient) {
 

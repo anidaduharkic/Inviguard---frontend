@@ -89,7 +89,6 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
    private loadItems(): void {
-
       this.service.getAllItems()
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe(items => {
