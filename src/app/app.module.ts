@@ -6,8 +6,6 @@ import {RegisterComponent} from "./register/register.component";
 import {LogInComponent} from "./LogIn/LogIn.component";
 import {HeaderComponent} from "./header/header.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
-import {ProfileComponent} from "./ProfilePage/profile.component";
-import {DashboardComponent} from "./Dashboard/dashboard.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -18,8 +16,12 @@ import {MatFormField} from "@angular/material/form-field";
 import {ApiService} from "./services/api.service";
 import {ItemsApiService} from "./services/items-api.service";
 import {MatListModule} from "@angular/material/list";
-import {InventoryComponent} from "./Inventory/inventory.component";
 import {MatCardModule} from "@angular/material/card";
+import {OrdersApiService} from "./services/orders-api.service";
+import {ProfileComponent} from "./features/ProfilePage/profile.component";
+import {DashboardComponent} from "./features/Dashboard/dashboard.component";
+import {InventoryComponent} from "./features/Inventory/inventory.component";
+import {OrdersComponent} from "./features/orders/orders.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatCardModule} from "@angular/material/card";
     SidebarComponent,
     ProfileComponent,
     DashboardComponent,
-    InventoryComponent
+    InventoryComponent,
+      OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {MatCardModule} from "@angular/material/card";
   providers: [
     provideAnimationsAsync('noop'),
     ApiService,
-    ItemsApiService
+    ItemsApiService,
+      OrdersApiService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,4 +7,5 @@ export enum Routes {
   sidebar = 'sidebar',
   inventory = 'inventory',
 
+
 }

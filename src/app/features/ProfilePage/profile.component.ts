@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ApiService} from "../services/api.service";
+import {ApiService} from "../../services/api.service";
 import {Observable} from "rxjs";
-import {Routes} from "../constants/routes";
-import {Router} from "@angular/router";
 
 
 @Component({
