@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
 import {LogInComponent} from "./LogIn/LogIn.component";
-import {ProfileComponent} from "./ProfilePage/profile.component";
-import {DashboardComponent} from "./Dashboard/dashboard.component";
-import {InventoryComponent} from "./Inventory/inventory.component";
+import {ProfileComponent} from "./features/ProfilePage/profile.component";
+import {DashboardComponent} from "./features/Dashboard/dashboard.component";
+import {InventoryComponent} from "./features/Inventory/inventory.component";
+import {OrdersComponent} from "./features/orders/orders.component";
+
 
 const routes: Routes = [
   {
@@ -47,6 +49,10 @@ const routes: Routes = [
   {
     path: 'inventory',
     component: InventoryComponent
+  },
+  {
+    path:'orders',
+    component:OrdersComponent
   }
 ];
 
