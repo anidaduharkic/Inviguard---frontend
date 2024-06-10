@@ -1,39 +1,81 @@
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
-import {OrderDto} from "../models/order-dto.interface";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { OrderDto } from '../models/order-dto.interface';
 
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class OrdersApiService {
 
   private readonly url: string = `${environment.backendUrl}/orders`;
 
-  //private url: string = 'http://localhost:8080/orders';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
+  getAllOrders(): Observable<OrderDto[]> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.get<OrderDto[]>(`${this.url}/list`, requestOptions);
   }
 
-  public getAllOrders(): Observable<OrderDto[]> {
-  return this.http.get<OrderDto[]>(this.url + '/list');
+  getOrder(id: number): Observable<OrderDto> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.get<OrderDto>(`${this.url}/${id}`, requestOptions);
+  }
+
+  deleteOrder(id: number): Observable<void> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.delete<void>(`${this.url}/${id}`, requestOptions);
+  }
+
+  createOrder(order: OrderDto): Observable<OrderDto> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    return this.http.post<OrderDto>(`${this.url}`,{
+      ...requestOptions,
+      params: {
+        userId: order.userId,
+        itemId: order.itemId,
+        numberOrdered: order.numberOrdered
+      }
+    });
+  }
+
+  updateOrder(id: number, order: OrderDto): Observable<OrderDto> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.put<OrderDto>(`${this.url}/${id}`, order, requestOptions);
+  }
 }
 
-  public getOrder(id: number): Observable<OrderDto> {
-    return this.http.get<OrderDto>(this.url + '/' + id);
-  }
-
-  public deleteOrder(id: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + id);
-  }
-
-  public createOrder(order: OrderDto): Observable<OrderDto> {
-    return this.http.post<OrderDto>(this.url, order);
-  }
-
-  public updateOrder(id: number, order: OrderDto): Observable<OrderDto> {
-    return this.http.put<OrderDto>(this.url + '/' + id, order);
-  }
-
-}
 

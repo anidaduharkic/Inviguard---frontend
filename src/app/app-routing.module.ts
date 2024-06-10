@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
-import {LogInComponent} from "./LogIn/LogIn.component";
-import {ProfileComponent} from "./features/ProfilePage/profile.component";
-import {DashboardComponent} from "./features/Dashboard/dashboard.component";
-import {InventoryComponent} from "./features/Inventory/inventory.component";
+import {LogInComponent} from "./login/LogIn.component";
+import {ProfileComponent} from "./features/profilepage/profile.component";
+import {DashboardComponent} from "./features/dashboard/dashboard.component";
+import {InventoryComponent} from "./features/inventory/inventory.component";
 import {OrdersComponent} from "./features/orders/orders.component";
 
 

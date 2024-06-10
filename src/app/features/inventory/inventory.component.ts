@@ -4,18 +4,6 @@ import {Observable, Subject, take, takeUntil} from "rxjs";
 import {ItemsApiService} from "../../services/items-api.service";
 import {ItemDto} from "../../models/item-dto.interface";
 
-export interface OrderElements {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-export interface LowInStock{
-  name:string;
-  position: number;
-  weight:number;
-}
 
 // @ts-ignore
 @Component({
@@ -44,8 +32,6 @@ export class InventoryComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject<void>();
   items: ItemDto[] = [];
   item!: ItemDto;
-
-
 
   ngOnDestroy():void{
     this.unsubscribe$.next();
@@ -84,6 +70,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.item = null!;
           this.loadItems();
+          this.form.reset();
         });
   }
 

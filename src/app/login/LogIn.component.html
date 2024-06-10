@@ -1,14 +1,25 @@
 
-<form [formGroup]="form">
-  <div>
-    <span>Email:</span>
-    <input formControlName="email"/>
-  </div>
-  <div>
-    <span>Password:</span>
-    <input formControlName="password"/>
-  </div> </form>
+<div class="wrap-center-vertical wrap-column">
+    <img src="assets/login.svg" alt="illustration">
+    <div class="wrap-center-vertical wrap-column">
+        <h2>Login</h2>
+        <p>Access Your Account</p>
+    </div>
+    <div>
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+            <div class="wrap-column">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControlName]="'email'" placeholder="Enter your email">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [formControlName]="'password'" placeholder="Enter your password">
+                </mat-form-field>
+                <button class="primary-button" mat-flat-button color="primary" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-<!-- <mat-slide-toggle formControlName="available">Available</mat-slide-toggle> -->
-<button type="submit" (click)="submitForm()">Submit</button>
 

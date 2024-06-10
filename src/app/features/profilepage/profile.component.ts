@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {Observable} from "rxjs";
+import {UserModel} from "../../models/user.model";
+import {UserService} from "../../services/user-service";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -10,31 +14,44 @@ import {Observable} from "rxjs";
 })
 
 
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
-  userProfile: any = {
-    picture: '../../favicon.co',
-    name: 'John',
-    surname: 'Doe',
-    about: 'Here goes the description of the person...'
-  };
+  @Input()
+  public studentId: number = 0
+  public fullName: string = ''
+  public email: string = ''
 
-  private Route: any | string;
-  router: any;
-  constructor(private service: ApiService) {
-
-  }
-  getSuggestion() {
-    const returnFromMethod: Observable<Object> = this.service.getSuggestion();
-    returnFromMethod.subscribe(this.callback);
-    console.log(returnFromMethod);
+  constructor(private router: Router, private _snackBar: MatSnackBar, private userService: UserService) {
   }
 
-  callback (item: any): void{
-    console.log(item);
+  ngOnInit(): void {
+
+    if(this.studentId){
+      this.userService.getStudentProfile(this.studentId).subscribe((data: any) => {
+        console.log(data)
+        this.fullName = data.user.fullName
+        this.email = data.user.email
+      }, error => {
+        this._snackBar.open("Failed to fetch profile", '', {
+          duration: 1000
+        })
+      })
+    } else {
+      this.userService.getProfile().subscribe((data: any) => {
+        console.log(data)
+        this.fullName = data.user.fullName
+        this.email = data.user.email
+      }, error => {
+        this._snackBar.open("Failed to fetch profile", '', {
+          duration: 1000
+        })
+      })
+    }
+
   }
 
   logout() :void {
     this.router.navigate(['sidebar']);
   }
+
 }

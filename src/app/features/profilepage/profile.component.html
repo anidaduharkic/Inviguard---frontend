@@ -1,31 +1,20 @@
 
 
 <div class="page">
-<app-sidebar></app-sidebar>
+    <app-sidebar></app-sidebar>
 
-<div class="profile-container">
-  <div class="profile-picture">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-  <!--    <img [src]="userProfile.picture" alt="User Picture"> -->
-  </div>
-  <div class="profile-info">
-    <h2>{{ userProfile.name }} {{ userProfile.surname }}</h2>
-    <p>{{ userProfile.about }}</p>
-    <!-- <button  type="button" (click)="logout()">Log out</button> -->
-    <div>
-      <button mat-raised-button type="button" (click)="getSuggestion()">Get suggestion</button>
+    <div class="profile-container">
+        <div class="profile-picture">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+            <!-- <img [src]="userProfile.picture" alt="User Picture"> -->
+        </div>
+        <div class="profile-info">
+            <h2>{{ fullName }}</h2>
+            <p>{{ email }}</p>
+            <div>
+                <a routerLink="/login" mat-raised-button>Log out</a>
+            </div>
+        </div>
     </div>
-         <!-- <mat-list role="list">
-              <mat-list-item role="listitem"
-                             [class] = "factObj.includesSuggestion ? 'pink' : '' "
-                             *ngFor="let factObj of facts">
-              {{factObj.fact}}
-              </mat-list-item>
-          </mat-list> -->
-    <div>
-    <a routerLink="/login" mat-raised-button>Log out</a>
-    </div>
-  </div>
 </div>
 
-</div>

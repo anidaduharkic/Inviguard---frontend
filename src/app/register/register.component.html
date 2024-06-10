@@ -1,26 +1,25 @@
 
-<form [formGroup]="form">
-  <div>
-    <span>Name:</span>
-    <input formControlName="name"/>
-  </div>
-  <span></span>
-  <div>
-    <span>Last name:</span>
-    <input formControlName="lastName"/>
-  </div>
-  <span></span>
-  <div>
-    <span>Email:</span>
-    <input formControlName="email"/>
-  </div>
-  <div>
-    <span>Password:</span>
-    <input formControlName="password"/>
-  </div> </form>
-
-<!--  <mat-slide-toggle formControlName="available">Available</mat-slide-toggle> -->
-  <button type="submit" (click)="submitForm()">Submit</button>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="wrap-column">
+        <mat-form-field>
+            <mat-label>Full Name</mat-label>
+            <input type="text" [formControlName]="'fullName'" matInput placeholder="Enter your full name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" [formControlName]="'email'" matInput placeholder="Enter your email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone number</mat-label>
+            <input type="number" [formControlName]="'phoneNumber'" matInput placeholder="Enter your phone number">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Create password</mat-label>
+            <input type="password" [formControlName]="'password'" matInput placeholder="Enter your password">
+        </mat-form-field>
+        <button class="primary-button" mat-flat-button color="primary" type="submit">Register</button>
+    </div>
+</form>
 
 
 <router-outlet></router-outlet>

@@ -1,9 +1,9 @@
-
 export interface OrderDto {
 
   id: number;
-  itemOrdered: string;
+  itemId: number;
+  userId: number;
   numberOrdered: number;
-  orderedBy: string;
+  orderDate: string;
 
 }

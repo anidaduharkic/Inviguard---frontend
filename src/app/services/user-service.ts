@@ -7,6 +7,7 @@ import {UserModel} from "../models/user.model";
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   private readonly baseUrl: string = `${environment.backendUrl}/user`;
