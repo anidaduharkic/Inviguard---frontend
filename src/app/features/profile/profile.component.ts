@@ -1,7 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ApiService} from "../../services/api.service";
-import {Observable} from "rxjs";
-import {UserModel} from "../../models/user.model";
 import {UserService} from "../../services/user-service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,23 +11,26 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 
 
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
 
   @Input()
-  public studentId: number = 0
+  public userId: number = 0
   public fullName: string = ''
   public email: string = ''
+  public phoneNumber: string = ''
 
   constructor(private router: Router, private _snackBar: MatSnackBar, private userService: UserService) {
   }
 
   ngOnInit(): void {
 
-    if(this.studentId){
-      this.userService.getStudentProfile(this.studentId).subscribe((data: any) => {
+    if(this.userId){
+      this.userService.getUserProfile(this.userId).subscribe((data: any) => {
         console.log(data)
+        this.userId = data.user.userId
         this.fullName = data.user.fullName
         this.email = data.user.email
+        this.phoneNumber = data.user.phoneNumber
       }, error => {
         this._snackBar.open("Failed to fetch profile", '', {
           duration: 1000
@@ -39,15 +39,16 @@ export class ProfileComponent implements OnInit{
     } else {
       this.userService.getProfile().subscribe((data: any) => {
         console.log(data)
+        this.userId = data.user.userId
         this.fullName = data.user.fullName
         this.email = data.user.email
+        this.phoneNumber = data.user.phoneNumber
       }, error => {
         this._snackBar.open("Failed to fetch profile", '', {
           duration: 1000
         })
       })
     }
-
   }
 
   logout() :void {

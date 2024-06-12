@@ -56,21 +56,4 @@ export class LogInComponent {
     })
   }
 
-
- /*form: FormGroup;
-
-  constructor(formBuilder: FormBuilder, private router: Router) {
-    this.form = formBuilder.group(
-      {
-        email: [],
-        password: [],
-      }
-    )
-  }
-
-  submitForm() {
-    console.log(this.form.value);
-    this.router.navigate([Routes.sidebar]);
-  } */
-
 }

@@ -3,13 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
 import {LogInComponent} from "./login/LogIn.component";
-import {ProfileComponent} from "./features/profilepage/profile.component";
+import {ProfileComponent} from "./features/profile/profile.component";
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {InventoryComponent} from "./features/inventory/inventory.component";
 import {OrdersComponent} from "./features/orders/orders.component";
+import {LandingComponent} from "./landing/landing.component";
 
 
 const routes: Routes = [
+  {
+    path: "",
+    component: LandingComponent
+  },
+
   {
     path: 'register',
     component: RegisterComponent,

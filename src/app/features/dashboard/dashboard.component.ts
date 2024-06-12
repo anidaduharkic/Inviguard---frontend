@@ -1,38 +1,10 @@
 import { Component } from '@angular/core';
+import {ItemDto} from "../../models/item-dto.interface";
+import {ItemsApiService} from "../../services/items-api.service";
+import {OrderDto} from "../../models/order-dto.interface";
+import {OrdersApiService} from "../../services/orders-api.service";
 
 
-export interface OrderElements {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-export interface LowInStock{
-  name:string;
-  position: number;
-  weight:number;
-}
-
-const ELEMENT_DATA: OrderElements[] = [
-  {position: 1, name: 'Laptop', weight: 2, symbol: 'John Doe'},
-  {position: 2, name: 'Smartphone', weight: 3, symbol: 'Jane Smith'},
-  {position: 3, name: 'Headphones', weight: 4, symbol: 'David Johnson'},
-  {position: 4, name: 'Backpack', weight: 5, symbol: 'Emily Brown'},
-  {position: 5, name: 'Notebook', weight: 6, symbol: 'Michael Williams'},
-  {position: 6, name: 'Water bottle', weight: 7, symbol: 'Sarah Jones'},
-  {position: 7, name: 'Umbrella', weight: 8, symbol: 'Jane Smith'},
-  {position: 8, name: 'Sunglasses', weight: 9, symbol: 'Emily Brown'},
-  {position: 9, name: 'T-shirt', weight: 12, symbol: 'Michael Williams'},
-  {position: 10, name: 'Jeans', weight: 20, symbol: 'David Johnson'},
-];
-
-const LOW_DATA: LowInStock[] = [
-  {position: 1, name: 'Umbrella', weight: 0},
-  {position: 2, name: 'Sunglasses', weight: 2},
-  {position: 3, name: 'T-shirt', weight: 1},
-  {position: 4, name: 'Jeans', weight: 3},
-]
 
 // @ts-ignore
 @Component({
@@ -43,10 +15,38 @@ const LOW_DATA: LowInStock[] = [
 
 
 export class DashboardComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
 
-  LowInStockColumns: string[] = ['position', 'name', 'weight'];
-  dataSourceStock = LOW_DATA;
+  lowStockItems: ItemDto[] = [];
+  orders: OrderDto[] = [];
+
+  constructor(private itemsApiService: ItemsApiService, private ordersApiService: OrdersApiService) {}
+
+  ngOnInit(): void {
+    this.fetchLowStockItems();
+    this.getAllOrders();
+  }
+
+  fetchLowStockItems(): void {
+    this.itemsApiService.getLowStockItems().subscribe(
+        (items: ItemDto[]) => {
+          this.lowStockItems = items;
+        },
+        (error: any) => {
+          console.error('Failed to fetch low stock items:', error);
+        }
+    );
+  }
+
+
+   getAllOrders() {
+    this.ordersApiService.getAllOrders().subscribe(
+        (orders: OrderDto[]) => {
+          this.orders = orders;
+        },
+    (error: any) => {
+       console.error('Failed to fetch orders', error);
+     }
+    )
+  }
 
 }

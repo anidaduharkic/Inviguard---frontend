@@ -36,12 +36,8 @@ export class RegisterComponent {
 
         this.authService.register(this.registerForm.value).subscribe((data: any) => {
             localStorage.setItem("authToken", data.token)
-            localStorage.setItem("isOrg", data.user.organization)
             localStorage.setItem("currentId", data.user.id)
 
-            // this._snackBar.open("Account created, please log in", '', {
-            //   duration: 1000
-            // })
             this.router.navigate(["/profile"])
 
         }, error => {
@@ -50,6 +46,5 @@ export class RegisterComponent {
             })
         })
     }
-
 
 }

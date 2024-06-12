@@ -1,5 +1,10 @@
-
-<form [formGroup]="registerForm" (ngSubmit)="submit()">
+<body>
+<div class="center">
+    <mat-icon class="personIcon" aria-hidden="false" aria-label="Person icon" fontIcon="person"></mat-icon>
+    <div class="login-header">
+        <p class="header">USER REGISTER</p>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
     <div class="wrap-column">
         <mat-form-field>
             <mat-label>Full Name</mat-label>
@@ -11,7 +16,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Phone number</mat-label>
-            <input type="number" [formControlName]="'phoneNumber'" matInput placeholder="Enter your phone number">
+            <input type="text" [formControlName]="'phoneNumber'" matInput placeholder="Enter your phone number">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Create password</mat-label>
@@ -20,6 +25,9 @@
         <button class="primary-button" mat-flat-button color="primary" type="submit">Register</button>
     </div>
 </form>
-
-
+</div>
+</body>
 <router-outlet></router-outlet>
+
+
+

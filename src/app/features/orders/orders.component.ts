@@ -6,6 +6,7 @@ import { OrdersApiService } from "../../services/orders-api.service";
 import { OrderDto } from "../../models/order-dto.interface";
 import { ItemsApiService } from "../../services/items-api.service";
 import { ItemDto } from "../../models/item-dto.interface";
+import { UserModel } from '../../models/user.model';
 
 @Component({
     selector: 'app-orders',
@@ -63,8 +64,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(order => {
                 this.form.setValue({
-                    userId: order.userId,
-                    itemId: order.itemId,
+                    userId: order.user.id,
+                    itemId: order.item.id,
                     numberOrdered: order.numberOrdered
                 });
                 this.order = order;
@@ -87,27 +88,40 @@ export class OrdersComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const newOrder: OrderDto = this.form.value;
+        const newOrder: OrderDto = {
+            id: 0,
+            user: { id: this.form.get('userId')?.value } as UserModel,
+            item: { id: this.form.get('itemId')?.value } as ItemDto,
+            numberOrdered: this.form.get('numberOrdered')?.value,
+            orderDate: ''
+        };
 
         this.ordersService.createOrder(newOrder)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe({
-                next: () => {
+                next: (order) => {
                     this.loadOrders();
                     this.loadItems();
                     this.form.reset();
-                    alert('Order created successfully.');
+                    alert('Order created successfully. ID: ' + order.id);
                 },
                 error: (error) => {
-                    console.error('Error creating order:', error);
-                    alert('Error creating order: ' + error.message);
+                    console.error('Error creating order, there is not enough capacity');
+                    alert('Error creating order');
                 }
             });
     }
 
     updateOrder(): void {
         if (this.form.valid && this.order) {
-            this.ordersService.updateOrder(this.order.id, this.form.value)
+            const updatedOrder: OrderDto = {
+                ...this.order,
+                user: { id: this.form.get('userId')?.value } as UserModel,
+                item: { id: this.form.get('itemId')?.value } as ItemDto,
+                numberOrdered: this.form.get('numberOrdered')?.value,
+            };
+
+            this.ordersService.updateOrder(this.order.id, updatedOrder)
                 .pipe(takeUntil(this.unsubscribe$))
                 .subscribe(() => {
                     this.loadOrders();
@@ -117,6 +131,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         }
     }
 }
+
 
 
 

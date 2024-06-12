@@ -43,5 +43,17 @@ export class ItemsApiService {
   public updateItem(id: number, item: ItemDto): Observable<ItemDto> {
     return this.http.put<ItemDto>(this.url + '/' + id, item);
   }
+
+  public getLowStockItems(): Observable<ItemDto[]> {
+    const token = localStorage.getItem("authToken");
+    const headerDict = {
+      'Authorization': "Bearer " + token
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.get<ItemDto[]>(`${this.url}/low-stock`, requestOptions);
+  }
 }
 

@@ -1,63 +1,79 @@
-<div class="page">
-    <app-sidebar></app-sidebar>
+<app-sidebar></app-sidebar>
 
-    <div style="margin-top: 180px; margin-left: 100px">
-        <div>
+<div class="page">
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+    <div style="margin-left: 100px" >
             <form [formGroup]="form" (ngSubmit)="submitForm()">
+                <h3>Make an Order</h3>
                 <div style="margin-bottom: 5px">
-                    <span>Item to Order:</span>
-                    <select formControlName="itemId">
+                    <span>Item</span>
+                    <div>
+                    <select formControlName="itemId" class="items">
                         <option *ngFor="let item of items" [value]="item.id">{{item.itemName}} ({{item.leftInStock}})</option>
                     </select>
+                    </div>
                 </div>
 
                 <div style="margin-bottom: 5px">
-                    <span>Number:</span>
-                    <input formControlName="numberOrdered" type="number" />
+                    <span>Number</span>
+                    <div>
+                    <input formControlName="numberOrdered" type="number" class="items"/>
+                    </div>
                 </div>
 
                 <div style="margin-bottom: 5px">
-                    <span>User ID:</span>
-                    <input formControlName="userId" type="text" />
+                    <span>User ID</span>
+                    <div>
+                    <input formControlName="userId" type="text" class="items" />
+                    </div>
                 </div>
 
                 <div>
-                    <button type="submit">Create</button>
+                    <button mat-flat-button color="primary" type="submit" class="createButton" class="createButton">
+                        Create
+                    </button>
                 </div>
             </form>
-        </div>
+    </div>
+        </mat-grid-tile>
 
-        <div class="item-list">
+        <mat-grid-tile class="secondBox">
             <mat-card class="example-card" *ngIf="order">
                 <mat-card-header>
                     <mat-card-title>Order ID: {{ order.id }}</mat-card-title>
-                    <mat-card-subtitle>Item ID: {{ order.itemId }}</mat-card-subtitle>
+                    <mat-card-subtitle>Item Name: {{ order.item.itemName }}</mat-card-subtitle>
+                    <mat-card-subtitle>Item ID: {{ order.item.id }}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p>Quantity Ordered: {{ order.numberOrdered }}</p>
-                    <p>Ordered by User ID: {{ order.userId }}</p>
+                    <p>Ordered by User ID: {{ order.user.id }}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button (click)="deleteOrder(order.id)">REMOVE</button>
-                    <button mat-button (click)="updateOrder()">UPDATE</button>
+                    <button mat-stroked-button (click)="deleteOrder(order.id)">REMOVE</button>
                 </mat-card-actions>
             </mat-card>
-        </div>
+        </mat-grid-tile>
 
-        <div>
+    </mat-grid-list>
+
+        <div class="secondCol">
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let order of orders">
                     <div class="item-list">
-                        <div>
-                            Item Ordered: {{order.itemId}}; Quantity: {{ order.numberOrdered }}
-                            <button type="button" (click)="getOneOrder(order.id)">Select</button>
-                        </div>
+                            <div>
+                                <strong style="color: darkred">ItemId:</strong> {{ order?.item?.id }}; <strong style="color: darkred">ItemName:</strong> {{order?.item?.itemName}};
+                                <strong style="color: darkred">OrderedBy</strong> {{order?.user?.id}}; <strong style="color: darkred">Quantity:</strong> {{ order.numberOrdered }};
+                                <strong style="color: darkred">Date ordered:</strong> {{ order.orderDate }};
+                                <button mat-raised-button color="warn" (click)="getOneOrder(order.id)">Select</button>
+                            </div>
                     </div>
                 </mat-list-item>
             </mat-list>
         </div>
-    </div>
+
 </div>
+
 
 
 

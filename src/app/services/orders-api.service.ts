@@ -56,26 +56,27 @@ export class OrdersApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.post<OrderDto>(`${this.url}`,{
+    return this.http.post<OrderDto>(`${this.url}`, null, {
       ...requestOptions,
       params: {
-        userId: order.userId,
-        itemId: order.itemId,
+        userId: order.user.id,
+        itemId: order.item.id,
         numberOrdered: order.numberOrdered
       }
     });
   }
 
   updateOrder(id: number, order: OrderDto): Observable<OrderDto> {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem('authToken');
     const headerDict = {
-      'Authorization': "Bearer " + token
-    }
+      'Authorization': 'Bearer ' + token
+    };
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
     return this.http.put<OrderDto>(`${this.url}/${id}`, order, requestOptions);
   }
+
 }
 
 

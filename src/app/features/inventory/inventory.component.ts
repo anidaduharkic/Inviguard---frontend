@@ -63,7 +63,6 @@ export class InventoryComponent implements OnInit, OnDestroy {
       });
     }
 
-
     deleteItem(id: number): void {
     this.service.deleteItem(id)
         .pipe(takeUntil(this.unsubscribe$))
@@ -87,6 +86,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(() => {
                 this.loadItems();
+                this.form.reset();
             });
     }
 }
