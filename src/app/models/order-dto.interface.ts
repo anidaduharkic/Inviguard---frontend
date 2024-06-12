@@ -1,9 +1,12 @@
+import {ItemDto} from "./item-dto.interface";
+import {UserModel} from "./user.model";
 
 export interface OrderDto {
 
   id: number;
-  itemOrdered: string;
+  item: ItemDto;
+  user: UserModel;
   numberOrdered: number;
-  orderedBy: string;
+  orderDate: string;
 
 }

@@ -1,135 +1,80 @@
-
-<div class="page">
-
 <app-sidebar></app-sidebar>
 
-    <!--- Note that these columns can be defined in any order.
-           The actual rendered columns are set as a property on the row definition" -->
- <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 80%;overflow: auto;">
+<div class="page">
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+    <div style="margin-left: 100px" >
+            <form [formGroup]="form" (ngSubmit)="submitForm()">
+                <h3>Make an Order</h3>
+                <div style="margin-bottom: 5px">
+                    <span>Item</span>
+                    <div>
+                    <select formControlName="itemId" class="items">
+                        <option *ngFor="let item of items" [value]="item.id">{{item.itemName}} ({{item.leftInStock}})</option>
+                    </select>
+                    </div>
+                </div>
 
+                <div style="margin-bottom: 5px">
+                    <span>Number</span>
+                    <div>
+                    <input formControlName="numberOrdered" type="number" class="items"/>
+                    </div>
+                </div>
 
+                <div style="margin-bottom: 5px">
+                    <span>User ID</span>
+                    <div>
+                    <input formControlName="userId" type="text" class="items" />
+                    </div>
+                </div>
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> ItemOrdered </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> NumberOrdered </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> OrderedBy </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <p></p>
-</div> -->
-<div style="margin-top: 180px; margin-left: 100px" >
-    <div>
-    <form [formGroup]="form" (ngSubmit)="submitForm()">
-
-        <div style="margin-bottom: 5px">
-            <span>Item to Order:</span>
-            <input formControlName="itemOrdered"/>
-        </div>
-
-        <div style="margin-bottom:5px">
-            <span>Number:</span>
-            <input formControlName="numberOrdered"/>
-        </div>
-
-        <div>
-            <span>Ordered By:</span>
-            <input formControlName="orderedBy"/>
-        </div>
-
-
-        <div>
-
-            <button type="submit">Create</button>
-
-        </div>
-    </form>
-</div>
-<!--
-<div class="page" style="display: flex; justify-content: center;">
-  <div style="width: 80%; overflow: auto;margin-left: 200px">
-    <h3 style="color: darkred;">Materials low in stock</h3>
-    <table mat-table [dataSource]="dataSourceStock" class="mat-elevation-z8" style="margin: 0 auto;">
-
-
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> ItemOrdered </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> LeftInStock </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> OrderedBy </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-
-
-      <tr mat-header-row *matHeaderRowDef="LowInStockColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: LowInStockColumns;"></tr>
-    </table>
-  </div>
-</div> -->
-
-    <div>
-    <div class="item-list">
-    <mat-card class="example-card" *ngIf="order" >
-        <mat-card-header>
-            <mat-card-title>{{order.itemOrdered}}</mat-card-title>
-            <mat-card-subtitle>Id: {{order.id}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>The capacity needed: {{order.numberOrdered}}</p>
-            <p>Ordered by: {{order.orderedBy}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button (click)="deleteOrder(order.id)">REMOVE</button>
-            <button mat-button (click)="updateOrder()">UPDATE</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-
-
-    <div>
-    <mat-list role="list">
-        <mat-list-item role="listitem"
-                       *ngFor="let order of orders">
-            <div class="item-list">
-                <div>Item Ordered: {{order.itemOrdered}}; NumberOrdered: {{order.numberOrdered}}
-                <button type="button" (click)="getOneOrder(order.id)">Select</button></div>
-            </div>
-        </mat-list-item>
-    </mat-list>
+                <div>
+                    <button mat-flat-button color="primary" type="submit" class="createButton" class="createButton">
+                        Create
+                    </button>
+                </div>
+            </form>
     </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="secondBox">
+            <mat-card class="example-card" *ngIf="order">
+                <mat-card-header>
+                    <mat-card-title>Order ID: {{ order.id }}</mat-card-title>
+                    <mat-card-subtitle>Item Name: {{ order.item.itemName }}</mat-card-subtitle>
+                    <mat-card-subtitle>Item ID: {{ order.item.id }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Quantity Ordered: {{ order.numberOrdered }}</p>
+                    <p>Ordered by User ID: {{ order.user.id }}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-stroked-button (click)="deleteOrder(order.id)">REMOVE</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+        <div class="secondCol">
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let order of orders">
+                    <div class="item-list">
+                            <div>
+                                <strong style="color: darkred">ItemId:</strong> {{ order?.item?.id }}; <strong style="color: darkred">ItemName:</strong> {{order?.item?.itemName}};
+                                <strong style="color: darkred">OrderedBy</strong> {{order?.user?.id}}; <strong style="color: darkred">Quantity:</strong> {{ order.numberOrdered }};
+                                <strong style="color: darkred">Date ordered:</strong> {{ order.orderDate }};
+                                <button mat-raised-button color="warn" (click)="getOneOrder(order.id)">Select</button>
+                            </div>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
 
 </div>
-</div>
-</div>
+
+
+
+
+

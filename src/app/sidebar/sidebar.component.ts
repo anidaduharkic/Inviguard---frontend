@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router, RouterModule} from '@angular/router';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+
 
 }

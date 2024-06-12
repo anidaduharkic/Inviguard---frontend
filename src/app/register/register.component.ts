@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Routes} from '../constants/routes';
+import {AuthService} from "../services/auth.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-register',
@@ -12,26 +14,37 @@ import {Routes} from '../constants/routes';
 export class RegisterComponent {
 
 
-  title = 'Fancy title';
+    public registerForm!: FormGroup
+    constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private _snackBar: MatSnackBar) {}
 
-  form: FormGroup;
-  private Route: any | string;
+    ngOnInit(): void {
+        this.registerForm = this.formBuilder.group({
+            'email': ['', [Validators.required, Validators.email]],
+            'password': ['', [Validators.required, Validators.min(6), Validators.max(16)]],
+            'fullName': ['', [Validators.required]],
+            'phoneNumber': ['', [Validators.required]],
+        });
+    }
 
-  constructor(formBuilder: FormBuilder, private router: Router) {
-    this.form = formBuilder.group(
-      {
-        name:[],
-        lastName:[],
-        email: [],
-        password: [],
-        available:[true],
-      }
-    )
-  }
+    public submit(): void {
+        if (!this.registerForm.valid) {
+            this._snackBar.open("Input is not valid", '', {
+                duration: 1000
+            })
+            return;
+        }
 
-  submitForm() {
-    console.log(this.form.value);
-    this.router.navigate([Routes.sidebar]);
-  }
+        this.authService.register(this.registerForm.value).subscribe((data: any) => {
+            localStorage.setItem("authToken", data.token)
+            localStorage.setItem("currentId", data.user.id)
+
+            this.router.navigate(["/profile"])
+
+        }, error => {
+            this._snackBar.open("Unable to register account", '', {
+                duration: 1000
+            })
+        })
+    }
 
 }

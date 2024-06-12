@@ -1,0 +1,56 @@
+
+button{
+  margin-bottom: 20px;
+}
+
+pink {
+  background-color: pink;
+}
+
+.landButton{
+  margin-top: 20px;
+}
+
+div{
+  color: black;
+}
+.page{
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.profile-container{
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+.example-card {
+  width: 800px;
+}
+
+div.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.logOutButton{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: flex-end;
+  margin-left: 660px;
+}
+
+div.header {
+  display: flex;
+  margin-left: 320px;
+  font-weight: lighter;
+}
+
+h1{
+  font-weight: normal;
+}

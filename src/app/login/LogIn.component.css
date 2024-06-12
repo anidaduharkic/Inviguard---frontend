@@ -1,0 +1,91 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap-center-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.wrap-column {
+  width: 100%;
+}
+
+.login-image {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.personIcon {
+  color:#003366;
+
+}
+
+.login-header p {
+  font-size: 24px;
+  color: #003366;
+  margin: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  padding: 0 30px;
+}
+
+form {
+  width: 100%;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.primary-button {
+  width: 100%;
+  padding: 25px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+

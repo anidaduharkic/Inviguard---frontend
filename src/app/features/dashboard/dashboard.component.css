@@ -1,0 +1,26 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.table-wrapper {
+  width: 48%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+
+

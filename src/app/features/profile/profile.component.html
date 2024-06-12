@@ -1,0 +1,27 @@
+
+<app-sidebar></app-sidebar>
+
+<body>
+
+<div class="header">
+<h1>Your Profile</h1>
+</div>
+
+<div class="card">
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>{{ fullName }}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{email}}</p>
+        <p>{{phoneNumber}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="logOutButton">
+            <button class="primary-button" mat-flat-button color="primary" routerLink="/login">LOG OUT</button>
+        </div>
+    </mat-card-actions>
+</mat-card>
+</div>
+</body>
